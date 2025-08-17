@@ -121,6 +121,11 @@ class $modify(MyCreatorLayer, CreatorLayer) {
         return true;
     }
 	void onAdventureMap(CCObject*) {
-		web::openLinkInBrowser("https://gdps.dimisaio.be/moregames.html");
+		// web::openLinkInBrowser("https://gdps.dimisaio.be/moregames.html");
+		FLAlertLayer::create(
+    		"The Map",    // title
+    		"The map is coming soon.",  // content
+    		"OK"        // button
+		)->show();
 	} 
 };
