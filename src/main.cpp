@@ -146,7 +146,7 @@ class $modify(MyCreatorLayer, CreatorLayer) {
 		// web::openLinkInBrowser("https://gdps.dimisaio.be/moregames.html");
 		auto myLayer = TheMapLayer::create();
         auto scene = CCDirector::sharedDirector()->getRunningScene();
-        scene->addChild(TheMapLayer);
+        scene->addChild(myLayer);
 		
 		auto transition = cocos2d::CCTransitionFade::create(0.5f, scene); // fade over 0.5 seconds
 		cocos2d::CCDirector::sharedDirector()->replaceScene(transition);
