@@ -9,9 +9,9 @@
 	"dependencies": {
 		"dankmeme.globed2": ">=v1.8.0"
 	},
-	"id": "jeantasoeur.feurdll",
-	"name": "FeurDLL",
+	"id": "cheps.feurdll",
+	"name": "RireDLL",
 	"version": "v1.0.0",
-	"developer": "Jean",
-	"description": "you have been dinde"
+	"developer": "ChepsGames (Forked from Jean)",
+	"description": "feurdll but you have been chip."
 }
