@@ -5,8 +5,9 @@
 #include <Geode/utils/web.hpp>
 #include <Geode/utils/casts.hpp>
 
-using namespace geode::prelude
+using namespace geode::prelude;
 class TheMapLayer : public cocos2d::CCLayer {
+public:
 	CREATE_FUNC(TheMapLayer);
     virtual bool init() override {
         if (!CCLayer::init()) return false;
