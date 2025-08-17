@@ -6,10 +6,8 @@
 #include <Geode/utils/casts.hpp>
 
 class TheMapLayer : public CCLayer {
-	CREATE_FUNC(TheMapLayer);
-
     virtual bool init() override {
-        if (!TheMapLayer::init()) return false;
+        if (!CCLayer::init()) return false;
 		
 		auto label = CCLabelBMFont::create("Hello Geode!", "goldFont.fnt");
         label->setPosition({ 240, 160 }); // center of 480x320 scene
@@ -148,7 +146,7 @@ class $modify(MyCreatorLayer, CreatorLayer) {
         }
         return true;
     }
-	void onAdventureMap(CCObject*) {
+	void onAdventureMap(CCObject*) override {
 		// web::openLinkInBrowser("https://gdps.dimisaio.be/moregames.html");
 		auto myLayer = TheMapLayer::create();
         auto scene = CCDirector::sharedDirector()->getRunningScene();
