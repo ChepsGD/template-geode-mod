@@ -103,66 +103,10 @@ class $modify(MyMenuLayer, MenuLayer) {
 	void onMoreGames(CCObject*) {
 		web::openLinkInBrowser("https://gdps.dimisaio.be/moregames.html");
 	} 
-
-	void triggerGlobedButton(CCObject*) {
-		if (auto menu = static_cast<CCMenu*>(getChildByID("bottom-menu"))) {
-		    if (auto btn = static_cast<CCMenuItemSpriteExtra*>(
-			menu->getChildByID("dankmeme.globed2/main-menu-button")
-		    )) {
-			if (btn->isVisible() && btn->isEnabled()) {
-			    btn->activate();
-			}
-		    }
-		}
-	}
-};
-
-// Taken from the SecretLayer6 mod, I'm sorry
-// and geode docs kms
-#include <Geode/modify/SecretLayer5.hpp>
-#include <Geode/loader/Event.hpp>
-class $modify(MySecretLayer5, SecretLayer5) {
-
-	struct Fields {
-        	EventListener<web::WebTask> m_listener;
-    	};
-
-	void onSubmit(CCObject * sender) {
-		std::string text = this->m_textInput->getString();
-		std::transform(
-			text.begin(),
-			text.end(),
-			text.begin(),
-			[](unsigned char c) {
-				return std::tolower(c);
-			}
-		);
-
-		m_fields->m_listener.bind([] (web::WebTask::Event* e) {
-		    if (web::WebResponse* res = e->getValue()) {
-			std::string tesla = res->string().unwrapOr("0");
-			if(tesla != "0") {
-				web::openLinkInBrowser(tesla);
-				return;
-			}
-		    } else if (web::WebProgress* p = e->getProgress()) {
-			log::info("progress: {}", p->downloadProgress().value_or(0.f));
-		    } else if (e->isCancelled()) {
-			log::info("The request was cancelled... So sad :(");
-		    }
-		});
-
-	        auto req = web::WebRequest();
-	        // Let's fetch... uhh...
-		std::string url = "https://gdps.dimisaio.be/database/getTesla.php?key=";
-		url += text;
-	        m_fields->m_listener.setFilter(req.get(url));
-
-		SecretLayer5::onSubmit(sender);
-	}
 };
 
 #include <Geode/modify/CreatorLayer.hpp>
+#include <Geode/utils/web.hpp>
 class $modify(MyCreatorLayer, CreatorLayer) {
     bool init() override {
         if (!CreatorLayer::init()) return false;
@@ -175,37 +119,9 @@ class $modify(MyCreatorLayer, CreatorLayer) {
             mapBtn->setVisible(false);
         }
 
-        auto versus = CCSprite::createWithSpriteFrameName("GJ_versusBtn_001.png");
-        versus->setScale(0.75f);
-
-        auto versusBtn = CCMenuItemSpriteExtra::create(
-            versus,
-            nullptr,
-            this,
-            menu_selector(MyCreatorLayer::onVersus)
-        );
-        versusBtn->setID("globedversus-button");
-
-        if (mapBtn) {
-            versusBtn->setPosition(mapBtn->getPositionX() + 2.f, mapBtn->getPositionY() - 2.f);
-        }
-
-        menu->addChild(versusBtn);
+		void onAdventureMap(CCObject*) {
+			web::openLinkInBrowser("https://gdps.dimisaio.be/moregames.html");
+		} 
         return true;
-    }
-
-    void onVersus(CCObject*) {
-        auto scene = CCDirector::sharedDirector()->getRunningScene();
-        if (!scene) return;
-
-        auto children = scene->getChildren();
-        CCObject* child = nullptr;
-	CCARRAY_FOREACH(children, child) {
-	    auto menuLayer = typeinfo_cast<MenuLayer*>(child);
-	    if (menuLayer) {
-	        static_cast<MyMenuLayer*>(menuLayer)->triggerGlobedButton(nullptr);
-	        break;
-	    }
-	}
     }
 };
