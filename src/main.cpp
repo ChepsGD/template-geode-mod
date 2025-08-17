@@ -11,6 +11,10 @@ public:
 	CREATE_FUNC(TheMapLayer);
     virtual bool init() override {
         if (!CCLayer::init()) return false;
+
+		auto bg = cocos2d::CCSprite::create("mapbg.png");
+		bg->setPosition({ 240, 160 }); // center of 480x320 scene
+		this->addChild(bg, -1);
 		
 		auto label = cocos2d::CCLabelBMFont::create("Hello Geode!", "goldFont.fnt");
         label->setPosition({ 240, 160 }); // center of 480x320 scene
@@ -142,7 +146,10 @@ class $modify(MyCreatorLayer, CreatorLayer) {
 		// web::openLinkInBrowser("https://gdps.dimisaio.be/moregames.html");
 		auto myLayer = TheMapLayer::create();
         auto scene = CCDirector::sharedDirector()->getRunningScene();
-        scene->addChild(myLayer, 100);
+        scene->addChild(TheMapLayer);
+		
+		auto transition = cocos2d::CCTransitionFade::create(0.5f, scene); // fade over 0.5 seconds
+		cocos2d::CCDirector::sharedDirector()->replaceScene(transition);
 	} 
 };
 
