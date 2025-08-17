@@ -147,7 +147,7 @@ class $modify(MyCreatorLayer, CreatorLayer) {
 		auto myLayer = TheMapLayer::create();
 		
 		auto scene = cocos2d::CCScene::create();
-    n	scene->addChild(myLayer);
+    	scene->addChild(myLayer);
 		
         scene->addChild(myLayer);
 		
