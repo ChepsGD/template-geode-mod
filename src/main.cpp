@@ -5,28 +5,19 @@
 #include <Geode/utils/web.hpp>
 #include <Geode/utils/casts.hpp>
 
-class TheMapLayer : public CCLayer {
+using namespace geode::prelude
+class TheMapLayer : public cocos2d::CCLayer {
+	CREATE_FUNC(TheMapLayer);
     virtual bool init() override {
         if (!CCLayer::init()) return false;
 		
-		auto label = CCLabelBMFont::create("Hello Geode!", "goldFont.fnt");
+		auto label = cocos2d::CCLabelBMFont::create("Hello Geode!", "goldFont.fnt");
         label->setPosition({ 240, 160 }); // center of 480x320 scene
         this->addChild(label);
 		
         // Initialize SomeNode
         return true;
     }
-    static TheMapLayer* create() {
-        auto ret = new TheMapLayer();
-        if (ret->init()) {
-            ret->autorelease();
-            return ret;
-        }
-
-        delete ret;
-        return nullptr;
-    }
-
 };
 
 
@@ -146,7 +137,7 @@ class $modify(MyCreatorLayer, CreatorLayer) {
         }
         return true;
     }
-	void onAdventureMap(CCObject*) override {
+	void onAdventureMap(CCObject*) {
 		// web::openLinkInBrowser("https://gdps.dimisaio.be/moregames.html");
 		auto myLayer = TheMapLayer::create();
         auto scene = CCDirector::sharedDirector()->getRunningScene();
