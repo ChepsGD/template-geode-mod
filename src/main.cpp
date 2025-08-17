@@ -118,10 +118,9 @@ class $modify(MyCreatorLayer, CreatorLayer) {
         if (mapBtn) {
             mapBtn->setVisible(false);
         }
-
-		void onAdventureMap(CCObject*) {
-			web::openLinkInBrowser("https://gdps.dimisaio.be/moregames.html");
-		} 
         return true;
     }
+	void onAdventureMap(CCObject*) {
+		web::openLinkInBrowser("https://gdps.dimisaio.be/moregames.html");
+	} 
 };
