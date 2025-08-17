@@ -122,10 +122,30 @@ class $modify(MyCreatorLayer, CreatorLayer) {
     }
 	void onAdventureMap(CCObject*) {
 		// web::openLinkInBrowser("https://gdps.dimisaio.be/moregames.html");
-		FLAlertLayer::create(
-    		"The Map",    // title
-    		"The map is coming soon.",  // content
-    		"OK"        // button
+		auto scene = CCScene::create();
+		scene->addChild(TheMapLayer::create());
+		CCDirector::sharedDirector()->replaceScene(scene);
 		)->show();
 	} 
+};
+
+class TheMapLayer : public CCLayer {
+    bool init() {
+        if (!CCLayer::init())
+            return false;
+		
+        // Initialize SomeNode
+        return true;
+    }
+    static TheMapLayer* create() {
+        auto ret = new TheMapLayer();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+
+        delete ret;
+        return nullptr;
+    }
+
 };
