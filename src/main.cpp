@@ -5,6 +5,34 @@
 #include <Geode/utils/web.hpp>
 #include <Geode/utils/casts.hpp>
 
+class TheMapLayer : public CCLayer {
+	CREATE_FUNC(TheMapLayer);
+
+    virtual bool init() override {
+        if (!TheMapLayer::init()) return false;
+		
+		auto label = CCLabelBMFont::create("Hello Geode!", "goldFont.fnt");
+        label->setPosition({ 240, 160 }); // center of 480x320 scene
+        this->addChild(label);
+		
+        // Initialize SomeNode
+        return true;
+    }
+    static TheMapLayer* create() {
+        auto ret = new TheMapLayer();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+
+        delete ret;
+        return nullptr;
+    }
+
+};
+
+
+
 /**
  * Brings cocos2d and all Geode namespaces to the current scope.
  */
@@ -122,30 +150,9 @@ class $modify(MyCreatorLayer, CreatorLayer) {
     }
 	void onAdventureMap(CCObject*) {
 		// web::openLinkInBrowser("https://gdps.dimisaio.be/moregames.html");
-		auto scene = CCScene::create();
-		scene->addChild(TheMapLayer::create());
-		CCDirector::sharedDirector()->replaceScene(scene);
-		)->show();
+		auto myLayer = TheMapLayer::create();
+        auto scene = CCDirector::sharedDirector()->getRunningScene();
+        scene->addChild(myLayer, 100);
 	} 
 };
 
-class TheMapLayer : public CCLayer {
-    bool init() {
-        if (!CCLayer::init())
-            return false;
-		
-        // Initialize SomeNode
-        return true;
-    }
-    static TheMapLayer* create() {
-        auto ret = new TheMapLayer();
-        if (ret->init()) {
-            ret->autorelease();
-            return ret;
-        }
-
-        delete ret;
-        return nullptr;
-    }
-
-};
