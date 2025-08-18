@@ -12,10 +12,9 @@ public:
 	CREATE_FUNC(TheMapLayer);
     virtual bool init() override {
         if (!CCLayer::init()) return false;
-		
-		auto audioEngine = FMODAudioEngine::sharedEngine();
-    	audioEngine->stopBackgroundMusic();
-    	audioEngine->playBackgroundMusic("my_song.mp3", true); // second arg = loop
+
+		FMODAudioEngine::sharedEngine()->stopAllMusic();
+    	FMODAudioEngine::sharedEngine()->playMusic("secretLoop.mp3", true);
 		
 		auto bg = cocos2d::CCSprite::create("mapbg.png");
 		bg->setPosition({ 240, 160 }); // center of 480x320 scene
