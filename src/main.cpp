@@ -5,7 +5,7 @@
 #include <Geode/utils/web.hpp>
 #include <Geode/utils/casts.hpp>
 
-#include "SimpleAudioEngine.h"
+#include <Geode/binding/FMODAudioEngine.hpp>
 using namespace geode::prelude;
 class TheMapLayer : public cocos2d::CCLayer {
 public:
@@ -13,8 +13,9 @@ public:
     virtual bool init() override {
         if (!CCLayer::init()) return false;
 		
-		CocosDenshion::SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
-		CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("secretLoop.mp3", true);
+		auto audioEngine = FMODAudioEngine::sharedEngine();
+    	audioEngine->stopBackgroundMusic();
+    	audioEngine->playBackgroundMusic("my_song.mp3", true); // second arg = loop
 		
 		auto bg = cocos2d::CCSprite::create("mapbg.png");
 		bg->setPosition({ 240, 160 }); // center of 480x320 scene
