@@ -13,8 +13,8 @@ public:
     virtual bool init() override {
         if (!CCLayer::init()) return false;
 
-		FMODAudioEngine::sharedEngine()->stopAllMusic();
-    	FMODAudioEngine::sharedEngine()->playMusic("secretLoop.mp3", true);
+		FMODAudioEngine::sharedEngine()->stopAllMusic(0);
+    	FMODAudioEngine::sharedEngine()->playMusic("secretLoop.mp3", true, 1, 0);
 		
 		auto bg = cocos2d::CCSprite::create("mapbg.png");
 		bg->setPosition({ 240, 160 }); // center of 480x320 scene
