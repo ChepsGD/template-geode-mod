@@ -5,6 +5,7 @@
 #include <Geode/utils/web.hpp>
 #include <Geode/utils/casts.hpp>
 
+#include "SimpleAudioEngine.h"
 using namespace geode::prelude;
 class TheMapLayer : public cocos2d::CCLayer {
 public:
