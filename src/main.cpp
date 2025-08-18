@@ -16,8 +16,8 @@ public:
 		bg->setPosition({ 240, 160 }); // center of 480x320 scene
 		this->addChild(bg, -1);
 		
-		auto label = cocos2d::CCLabelBMFont::create("Hello Geode!", "goldFont.fnt");
-        label->setPosition({ 240, 160 }); // center of 480x320 scene
+		auto label = cocos2d::CCLabelBMFont::create("The Map", "goldFont.fnt");
+        label->setPosition({ 255, 0 }); // center of 480x320 scene
         this->addChild(label);
 		
         // Initialize SomeNode
