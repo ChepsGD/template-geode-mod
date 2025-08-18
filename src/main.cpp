@@ -11,7 +11,10 @@ public:
 	CREATE_FUNC(TheMapLayer);
     virtual bool init() override {
         if (!CCLayer::init()) return false;
-
+		
+		CocosDenshion::SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
+		CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("secretLoop.mp3", true);
+		
 		auto bg = cocos2d::CCSprite::create("mapbg.png");
 		bg->setPosition({ 240, 160 }); // center of 480x320 scene
 		this->addChild(bg, -1);
