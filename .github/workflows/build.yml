@@ -15,10 +15,6 @@ jobs:
         - name: Windows
           os: windows-latest
 
-        - name: macOS
-          os: macos-12
-          arch: x86_64
-
         - name: Android32
           os: ubuntu-latest
           target: Android32
@@ -40,11 +36,6 @@ jobs:
           bindings-ref: main
           combine: true
           target: ${{ matrix.config.target }}
-          cmake-args: >   # PLEASE FIX MACOS
-            -DCMAKE_OSX_ARCHITECTURES=x86_64
-            -DCMAKE_XCODE_ATTRIBUTE_ARCHS=x86_64
-            -DCMAKE_XCODE_ATTRIBUTE_EXCLUDED_ARCHS=arm64
-            -DCMAKE_XCODE_ATTRIBUTE_ONLY_ACTIVE_ARCH=NO
 
   package:
     name: Package builds
