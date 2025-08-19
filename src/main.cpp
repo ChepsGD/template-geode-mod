@@ -22,7 +22,6 @@ public:
 		// Handle loading assets
 		auto bg = cocos2d::CCSprite::create("mapbg.png");
 		bg->setPosition({ 240, 160 }); // center of 480x320 scene
-		this->addChild(bg, -1);
 		
 		auto label = cocos2d::CCLabelBMFont::create("The Map", "goldFont.fnt");
         label->setPosition({ 275, 300 }); // center of 480x320 scene
@@ -35,6 +34,7 @@ public:
 		auto scroll = CCScrollView::create({windowSize.width, windowSize.height}, scrolLayer);
 		scroll->setDirection(kCCScrollViewDirectionBoth);  
 		scroll->setTouchEnabled(true);
+		this->addChild(scroll);
 		
         // Initialize SomeNode
         return true;
