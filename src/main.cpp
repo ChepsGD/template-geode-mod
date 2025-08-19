@@ -13,9 +13,11 @@ public:
     virtual bool init() override {
         if (!CCLayer::init()) return false;
 
+		// Handle the BGM
 		FMODAudioEngine::sharedEngine()->stopAllMusic(0);
     	FMODAudioEngine::sharedEngine()->playMusic("secretLoop.mp3", true, 1, 0);
-		
+
+		// Handle loading assets
 		auto bg = cocos2d::CCSprite::create("mapbg.png");
 		bg->setPosition({ 240, 160 }); // center of 480x320 scene
 		this->addChild(bg, -1);
@@ -23,6 +25,14 @@ public:
 		auto label = cocos2d::CCLabelBMFont::create("The Map", "goldFont.fnt");
         label->setPosition({ 275, 300 }); // center of 480x320 scene
         this->addChild(label);
+
+		// Scrolling support
+		auto windowSize = CCDirector::sharedDirector()->getWinSize();
+		auto scrolLayer = CCLayer::create();
+		scrolLayer->addChild(bg, -1);
+		auto scroll = CCScrollView::create({winSize.width, winSize.height}, scrolLayer);
+		scroll->setDirection(kCCScrollViewDirectionBoth);  
+		scroll->setTouchEnabled(true);
 		
         // Initialize SomeNode
         return true;
