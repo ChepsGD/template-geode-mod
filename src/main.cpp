@@ -6,6 +6,8 @@
 #include <Geode/utils/casts.hpp>
 
 #include <Geode/binding/FMODAudioEngine.hpp>
+#include "cocos-ext.h"
+USING_NS_CC_EXT;
 using namespace geode::prelude;
 class TheMapLayer : public cocos2d::CCLayer {
 public:
