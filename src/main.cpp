@@ -30,7 +30,7 @@ public:
 		auto windowSize = CCDirector::sharedDirector()->getWinSize();
 		auto scrolLayer = CCLayer::create();
 		scrolLayer->addChild(bg, -1);
-		auto scroll = CCScrollView::create({winSize.width, winSize.height}, scrolLayer);
+		auto scroll = CCScrollView::create({windowSize.width, windowSize.height}, scrolLayer);
 		scroll->setDirection(kCCScrollViewDirectionBoth);  
 		scroll->setTouchEnabled(true);
 		
