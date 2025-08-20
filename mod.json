@@ -6,12 +6,9 @@
 		"mac": "2.2074",
 		"ios": "2.2074"
 	},
-	"dependencies": {
-		"dankmeme.globed2": ">=v1.8.0"
-	},
-	"id": "cheps.feurdll",
-	"name": "RireDLL",
+	"id": "cheps.template",
+	"name": "___ Mod",
 	"version": "v1.0.0",
-	"developer": "ChepsGames (Forked from Jean)",
-	"description": "feurdll but you have been chip."
+	"developer": "ChepsGames",
+	"description": "Mod description goes here."
 }
